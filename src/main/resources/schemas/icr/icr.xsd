@@ -3,7 +3,7 @@
     xmlns:icr="http://nrg.wustl.edu/icr"
     xmlns:xnat="http://nrg.wustl.edu/xnat"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    elementFormDefault="qualified" attributeFormDefault="unqualified">
+    elementFormDefault="qualified">
     <xs:import namespace="http://nrg.wustl.edu/xnat" schemaLocation="../xnat/xnat.xsd"/>
     <xs:element name="PreclinicalDemographicData" type="icr:preclinicalDemographicData"/>
     
@@ -12,9 +12,9 @@
             <xs:documentation>Version of demographics appropriate to preclinical subjects</xs:documentation>
         </xs:annotation>
         <xs:complexContent>
-            <xs:extension base="xnat:subjectAssessorData">
+            <xs:extension base="xnat:abstractDemographicData">
                 <xs:sequence>
-                    <xs:element name="species">
+                    <xs:element name="species" minOccurs="0">
                         <xs:annotation>
                             <xs:documentation>Species</xs:documentation>
                         </xs:annotation>
@@ -22,7 +22,7 @@
                             <xs:restriction base="xs:string"/>
                         </xs:simpleType>
                     </xs:element>
-                    <xs:element name="genotype">
+                    <xs:element name="genotype" minOccurs="0">
                         <xs:annotation>
                             <xs:documentation>Genotype</xs:documentation>
                         </xs:annotation>
@@ -31,7 +31,7 @@
                         </xs:simpleType>
                     </xs:element>
                     <!--xs:element name="dateOfDeath" type="xs:date" minOccurs="0"/-->
-                    <xs:element name="tumourType">
+                    <xs:element name="tumourType" minOccurs="0">
                         <xs:annotation>
                             <xs:documentation>Type of Tumour</xs:documentation>
                         </xs:annotation>
