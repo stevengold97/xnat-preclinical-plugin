@@ -1,39 +1,52 @@
+#* @vtlvariable name="item" type="org.nrg.xdat.om.XnatSubjectdata" *#
+#* @vtlvariable name="vr" type="org.nrg.xft.utils.ValidationUtils.ValidationResultsI" *#
 <!-- BEGIN /screens/xnat_subjectData/xnat_subjectData_edit_addtl_demographics.vm -->
 <tr>
     #formLabel("Species")
     <td>
-        #xdatTextBox("icr:preclinicalDemographicData/species" $item "" $vr)
+        #xdatTextBox("xnat:subjectData/demographics[@xsi:type=icr:preclinicalDemographicData]/species" $item "" $vr)
     </td>
 </tr>
-
+<tr>
+    #formLabel("Genotype")
+    <td>
+        #xdatTextBox("xnat:subjectData/demographics[@xsi:type=icr:preclinicalDemographicData]/genotype" $item "" $vr)
+    </td>
+</tr>
+<tr>
+    #formLabel("Type of Tumour")
+    <td>
+        #xdatTextBox("xnat:subjectData/demographics[@xsi:type=icr:preclinicalDemographicData]/tumourType" $item "" $vr)
+    </td>
+</tr>
 <tr>
     #formLabel("Education")
     <td>
-        #xdatTextBox("xnat:subjectData/demographics[@xsi:type=xnat:demographicData]/education" $item "" $vr)
+        #xdatTextBox("xnat:subjectData/demographics[@xsi:type=icr:preclinicalDemographicData]/education" $item "" $vr)
     </td>
 </tr>
 <tr>
     #formLabel("Race")
     <td>
-        #xdatTextBox("xnat:subjectData/demographics[@xsi:type=xnat:demographicData]/race" $item "" $vr)
+        #xdatTextBox("xnat:subjectData/demographics[@xsi:type=icr:preclinicalDemographicData]/race" $item "" $vr)
     </td>
 </tr>
 <tr>
     #formLabel("Ethnicity")
     <td>
-        #xdatTextBox("xnat:subjectData/demographics[@xsi:type=xnat:demographicData]/ethnicity" $item "" $vr)
+        #xdatTextBox("xnat:subjectData/demographics[@xsi:type=icr:preclinicalDemographicData]/ethnicity" $item "" $vr)
     </td>
 </tr>
 <tr>
     #formLabel("Height (inches)")
     <td>
-        #xdatTextBox("xnat:subjectData/demographics[@xsi:type=xnat:demographicData]/height" $item "" $vr)
+        #xdatTextBox("xnat:subjectData/demographics[@xsi:type=icr:preclinicalDemographicData]/height" $item "" $vr)
     </td>
 </tr>
 <tr>
     #formLabel("Weight (lbs)")
     <td>
-        #xdatTextBox("xnat:subjectData/demographics[@xsi:type=xnat:demographicData]/weight" $item "" $vr)
+        #xdatTextBox("xnat:subjectData/demographics[@xsi:type=icr:preclinicalDemographicData]/weight" $item "" $vr)
     </td>
 </tr>
 <tr>
@@ -42,6 +55,4 @@
         #xdatTextBox("xnat:subjectData/src" $item "" $vr)
     </td>
 </tr>
-
-
 <!-- END /screens/xnat_subjectData/xnat_subjectData_edit_addtl_demographics.vm -->

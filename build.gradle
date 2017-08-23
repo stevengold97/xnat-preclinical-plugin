@@ -9,7 +9,7 @@
 
 buildscript {
     ext {
-        vXnat = '1.7.2'
+        vXnat = '1.7.3-SNAPSHOT'
     }
     repositories {
         mavenLocal()
@@ -34,7 +34,6 @@ def pluginVersion = '1.0.0'
 group 'org.nrg.xnat.icr'
 version pluginVersion
 
-def vXnat = '1.7.2'
 def vJunit = '4.12'
 def vSpring = '4.2.9.RELEASE'
 def vSpringSecurity = '4.0.4.RELEASE'
@@ -52,11 +51,14 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'xnat-data-builder'
 
-
 repositories {
     mavenLocal()
     mavenCentral()
     jcenter()
+    maven {
+        url 'http://www.dcm4che.org/maven2'
+        name 'Dcm4che Repository'
+    }
     maven {
         url 'https://nrgxnat.jfrog.io/nrgxnat/libs-release'
         name 'XNAT Release Repository'
@@ -77,13 +79,13 @@ targetCompatibility = 1.7
 if (hasProperty("rt.17.jar")) {
     // Solution for bootstrap classpath warning and possible issues with compatibility with 1.7 libraries
     // was taken from this post on discuss.gradle.org: http://bit.ly/24xD9j0
-    def rt17jar = getProperty("rt.17.jar")
+    def rt17jar = property "rt.17.jar"
     logger.info "Using ${rt17jar} as the bootstrap class path jar."
     gradle.projectsEvaluated {
         tasks.withType(JavaCompile) {
             options.fork = true
             options.compilerArgs << "-XDignore.symbol.file"
-            options.bootClasspath = rt17jar
+            options.bootClasspath = rt17jar as String
         }
     }
 } else {
@@ -101,9 +103,9 @@ jacoco {
 
 jacocoTestReport {
     reports {
-        xml.enabled false
-        csv.enabled false
-        html.destination "${buildDir}/jacocoHtml"
+        xml.enabled = false
+        csv.enabled = false
+        html.destination file("${buildDir}/jacocoHtml")
     }
 }
 
@@ -142,9 +144,7 @@ dependencies {
     compile(group: 'org.apache.velocity', name: 'velocity', version: '1.7') {
         exclude group: '*'
     }
-    compile("org.nrg:framework:1.7.0-SNAPSHOT") {
-        transitive = false
-    }
+
     compile "org.slf4j:slf4j-api:${vSlf4j}"
     compile "org.slf4j:slf4j-log4j12:${vSlf4j}"
     compile "org.slf4j:jul-to-slf4j:${vSlf4j}"
